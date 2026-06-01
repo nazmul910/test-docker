@@ -17,7 +17,7 @@ const connectDB = async () => {
   try {
     await client.connect();
     console.log("MongoDB Connected");
-    return client.db("apnacollege-db");
+    return client.db("test-db");
   } catch (error) {
     console.error(error);
   }

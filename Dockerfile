@@ -7,4 +7,6 @@ RUN mkdir -p testapp
 
 COPY . /testapp
 
+RUN npm install
+
 CMD ["node","/testapp/server.js"]

@@ -19,7 +19,7 @@ const connectDB = async () => {
     console.log("MongoDB Connected");
     return client.db("test-db");
   } catch (error) {
-    console.error(error);
+    console.error("Error connecting to MongoDB:", error);
   }
 };
 
@@ -35,6 +35,7 @@ app.get("/getUsers", async (req, res) => {
 
     res.status(200).json(users);
   } catch (error) {
+    console.error("Error fetching users:", error);
     res.status(500).json({
       message: error.message,
     });
@@ -55,6 +56,7 @@ app.post("/addUser", async (req, res) => {
       insertedId: result.insertedId,
     });
   } catch (error) {
+    console.error("Error adding user:", error);
     res.status(500).json({
       message: error.message,
     });

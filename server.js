@@ -45,7 +45,18 @@ app.get("/getUsers", async (req, res) => {
 // POST new user
 app.post("/addUser", async (req, res) => {
   try {
+    const { name, email } = req.body;
+
     const db = await connectDB();
+
+
+    const existingUser = await db.collection("users").findOne({email});
+
+    if(existingUser) {
+      return res.status(400).json({
+        message: "User with this email already exists",
+      });
+    }
 
     const result = await db
       .collection("users")
